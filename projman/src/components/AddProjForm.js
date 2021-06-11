@@ -11,6 +11,7 @@ export default function AddProjForm() {
     const [name , setName] = useState("");
     const [org , setOrg] = useState("");
     const [duration , setDuration] = useState("");
+    const [showForm  , setShowForm] = useState({display : "true"})
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -30,7 +31,10 @@ export default function AddProjForm() {
         }
 
         sendToBackend(obj);
-        handleClose()
+        setShowForm({display : "false"})
+        setTimeout(()=>{setShowForm({display : "true"}) ; handleClose()} , 90000)
+        
+        
     }
 
     function sendToBackend(obj){
@@ -59,7 +63,8 @@ export default function AddProjForm() {
                 <Modal.Header closeButton>
                 <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>Please add the relevent details</Modal.Body>
+                <div style={showForm}>
                 <Form >
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridEmail">
@@ -82,6 +87,14 @@ export default function AddProjForm() {
                         <Form.Control type="text" placeholder="Org. name"  onChange={(e)=>{setDuration(e.target.value)}} />
                     </Form.Group>
                 </Form>
+                </div>
+                {
+                    ()=>{
+                        if(showForm=={display : "false"}){
+                            return <h2>Please wait as set up the sheet in the back end</h2>
+                        }
+                    }
+                }
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Close
