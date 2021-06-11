@@ -1,0 +1,7 @@
+.listcard-element {
+    border-right : 1px solid gray;
+    width : 100%;
+    justify-content : center;
+    text-align : center;
+     padding-top : 10px; 
+}
