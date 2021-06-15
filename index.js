@@ -365,6 +365,8 @@ function EditProject(obj){
 const app = express()
 const port = process.env.PORT||9000
 
+console.log("we are on port" + port);
+
 app.use(bodyParser.json());
 app.use(cors())
 

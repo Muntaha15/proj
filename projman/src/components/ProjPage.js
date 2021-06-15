@@ -30,7 +30,7 @@ export default function ProjPage(props) {
         /*"http://localhost:9000/members/"*/
 
         console.log("before the fetch")
-        fetch( "/members" + (state._id) , {
+        fetch( "/members/" + (state._id) , {
             method : "GET",
         }).then(res => res.json()).then(data => {setMemberList(data.list) ; setLink(data.link);setCheckpoints(data.checkpoints)});
         
