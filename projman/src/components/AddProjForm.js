@@ -1,3 +1,4 @@
+import { faWindows } from '@fortawesome/free-brands-svg-icons';
 import React , {useState} from 'react'
 import { Form , Button , Container , Modal , Col , Tooltip , OverlayTrigger} from "react-bootstrap"
 import DatePicker from "react-date-picker"
@@ -32,7 +33,8 @@ export default function AddProjForm() {
 
         sendToBackend(obj);
         setShowForm({display : "false"})
-        setTimeout(()=>{setShowForm({display : "true"}) ; handleClose()} , 90000)
+        handleClose()
+        window.location.reload()
         
         
     }

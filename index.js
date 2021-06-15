@@ -289,9 +289,32 @@ function DeleteMember(obj){
   })
 }
 
+function getIdFromLink(link){
+  for(var i = 0 ; i < link.length ; i++){
+    if(i>0){
+      if(link.substring(i-1 , i+2) == "/d/"){
+        let id = link.substring(i+2  , link.length);
+        console.log("the link to be deleted is ...." + id);
+        return id
+      }
+    }
+  }
+}
+
 function DeleteProject(obj){
   console.log("deleting.....")
   console.log(obj.project)
+  Project.find({_id : obj.project} , function(err , projects){
+    if(err){
+      console.log(err)
+    }else{
+      console.log(projects[0].link)
+
+      const link = projects[0].link
+      let sheet = getIdFromLink(link)
+      deleteFile(sheet)
+    }
+  })
   Project.deleteOne({_id : obj.project} , function(err){
     if(err){
       console.log(err);
