@@ -3,7 +3,7 @@ function Send(data , type) {
 
     async function SendData(data , type) {
       console.log("here at " + type)
-      const res = await fetch("http://localhost:9000/data/" + type , {
+      const res = await fetch(/*"http://localhost:9000/data/"*/ "https://projmanmod.herokuapp.com/data" + type , {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -3,7 +3,7 @@ function EditSend(data , type) {
 
     async function EditSendData(data , type) {
       console.log("here at " + type)
-      const res = await fetch("http://localhost:9000/edit/" + type , {
+      const res = await fetch(/*"http://localhost:9000/edit/"*/ "https://projmanmod.herokuapp.com/edit/" + type , {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
