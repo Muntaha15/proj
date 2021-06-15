@@ -12,10 +12,10 @@ export default function HomePage(props) {
 
   const [projList , setProjList] = React.useState([])
 
-  
+  /*"http://localhost:9000/projects"*/ 
   React.useEffect(()=>{
     console.log("before thr fetch statement");
-    fetch(/*"http://localhost:9000/projects"*/ "https://projmanmod.herokuapp.com/projects")
+    fetch("https://projmanmod.herokuapp.com/projects")
     .then(res => res.json())
     .then(data => {
       console.log(data);
