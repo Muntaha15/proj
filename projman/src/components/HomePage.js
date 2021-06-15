@@ -15,7 +15,7 @@ export default function HomePage(props) {
   /*"http://localhost:9000/projects"*/ 
   React.useEffect(()=>{
     console.log("before thr fetch statement");
-    fetch("https://projmanmod.herokuapp.com/projects")
+    fetch("/projects")
     .then(res => res.json())
     .then(data => {
       console.log(data);
