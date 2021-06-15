@@ -27,10 +27,10 @@ export default function ProjPage(props) {
     React.useEffect(()=>{
 
         
-        
+        /*"http://localhost:9000/members/"*/
 
         console.log("before the fetch")
-        fetch(/*"http://localhost:9000/members/"*/ "https://projmanmod.herokuapp.com/members" + (state._id) , {
+        fetch( "/members" + (state._id) , {
             method : "GET",
         }).then(res => res.json()).then(data => {setMemberList(data.list) ; setLink(data.link);setCheckpoints(data.checkpoints)});
         

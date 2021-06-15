@@ -3,7 +3,7 @@ function DeleteSend(data , type) {
 
     async function DeleteSendData(data , type) {
       console.log("here at " + type)
-      const res = await fetch(/*"http://localhost:9000/delete/"*/ "https://projmanmod.herokuapp.com/delete/" + type , {
+      const res = await fetch( "/delete/" + type , {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
