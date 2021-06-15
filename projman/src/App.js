@@ -21,7 +21,7 @@ import "./App.css";
 
 function App() {
   async function test(){
-    var res = await fetch('http://localhost:9000/api');
+    var res = await fetch(/*'http://localhost:9000/api'*/ "https://projmanmod.herokuapp.com/api");
     res.text()
     .then((text)=> {console.log(text);})
     .catch((err)=>{console.log("error has occured")});
