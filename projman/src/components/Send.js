@@ -1,7 +1,7 @@
-function Send(data , type) {
+function Send(data , type , user) {
     
 
-    async function SendData(data , type) {
+    async function SendData(data , type , user) {
       console.log("here at " + type)
       const res = await fetch( "/data/" + type , {
         method: "POST",
@@ -11,6 +11,7 @@ function Send(data , type) {
         },
         body: JSON.stringify({
           data: data,
+          user : user,
           test: "this is test message",
         }),
       });
@@ -19,8 +20,9 @@ function Send(data , type) {
       });
     }
     
-    console.log(type)
-    SendData(data , type);
+    console.log(type);
+    console.log("a project is to be made by " + user)
+    SendData(data , type , user);
   }
   
   export default Send;

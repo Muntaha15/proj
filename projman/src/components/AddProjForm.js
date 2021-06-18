@@ -4,7 +4,7 @@ import { Form , Button , Container , Modal , Col , Tooltip , OverlayTrigger} fro
 import DatePicker from "react-date-picker"
 import Send from "./Send"
 
-export default function AddProjForm() {
+export default function AddProjForm(props) {
 
     const [show, setShow] = useState(false);
     const [start , setStart] = useState(new Date());
@@ -40,7 +40,7 @@ export default function AddProjForm() {
     }
 
     function sendToBackend(obj){
-        Send(obj , "project");
+        Send(obj , "project" , props.user);
         console.log(obj);
         console.log("creating project in the backend");
     }

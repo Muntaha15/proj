@@ -3,7 +3,7 @@ const cors = require("cors")
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const {spawn} = require("child_process")
-const {makeCopy , deleteFile} = require("./makeCopy.js")
+const {makeCopy , deleteFile , grantPermission} = require("./makeCopy.js")
 const  path = require("path");
 
 
@@ -156,16 +156,31 @@ const Project = new mongoose.model("Project" , projectSchema);
 const Member = new mongoose.model("Member"  , memberSchema )
 const Task = new mongoose.model("Task" , taskSchema);
 
-
-
-  function   getNewSheetLink(){
-  const link = makeCopy();
-  return link;
+function getIdFromLink(link){
+  for(var i = 0 ; i < link.length ; i++){
+    if(i>0){
+      if(link.substring(i-1 , i+2) == "/d/"){
+        let id = link.substring(i+2  , link.length);
+        console.log("the link to be deleted is ...." + id);
+        return id
+      }
+    }
+  }
 }
 
-async function saveNewProject(obj){
+
+  async function   getNewSheetLink(user){
+  const link = await makeCopy();
+  const file = getIdFromLink(link);
+  console.log(file)
+  grantPermission(user , file)
+  return link;
+
+}
+
+async function saveNewProject(obj , user){
   try{
-    const link = await getNewSheetLink();
+    const link = await getNewSheetLink(user);
 
     const project =  new Project({
       type : obj.type,
@@ -289,25 +304,16 @@ function DeleteMember(obj){
   })
 }
 
-function getIdFromLink(link){
-  for(var i = 0 ; i < link.length ; i++){
-    if(i>0){
-      if(link.substring(i-1 , i+2) == "/d/"){
-        let id = link.substring(i+2  , link.length);
-        console.log("the link to be deleted is ...." + id);
-        return id
-      }
-    }
-  }
-}
 
-function DeleteProject(obj){
+function DeleteProject(obj ){
   console.log("deleting.....")
   console.log(obj.project)
+  console.log(obj)
   Project.find({_id : obj.project} , function(err , projects){
     if(err){
       console.log(err)
     }else{
+      console.log(projects[0])
       console.log(projects[0].link)
 
       const link = projects[0].link
@@ -404,6 +410,8 @@ app.get("/api" , function(req , res){
 app.post("/data/:type" , function(req , res ){
   
   const data = req.body.data;
+  
+  console.log(req.body)
   const type = req.params.type;
   console.log("req to /data")
   console.log(req.params)
@@ -411,7 +419,7 @@ app.post("/data/:type" , function(req , res ){
   if(type == "member"){
     saveNewMember(data)
   }else if(type == "project"){
-    saveNewProject(data)
+    saveNewProject(data , req.body.user)
   }else if(type == "task"){
     saveNewTask(data)
   }else if(type == "checkpoint"){
@@ -428,7 +436,7 @@ app.post("/delete/:type" ,  function(req , res ){
   if(req.params.type == "member"){
     DeleteMember(req.body.data)
   }else if(req.params.type == "project"){
-    DeleteProject(req.body.data)
+    DeleteProject(req.body.data )
   }
 
 })

@@ -29,7 +29,7 @@ export default function AddMember(props) {
     }
 
     function sendToBackend(obj){
-        Send(obj , "member");
+        Send(obj , "member" , "none");
         console.log(obj);
         console.log("adding new member to" + props.project);
     }

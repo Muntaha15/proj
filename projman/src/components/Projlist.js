@@ -48,7 +48,7 @@ export default function Projlist(props) {
                           return <div data-aos="fade-left" data-aos-duration={`${(10-key)*100}`}><ListCard name = {proj.name} org={proj.org}  duration={proj.duration} _id = {proj._id}  token={props.token} profile={props.profile}  /></div>
                       })
                     }
-            <AddProjForm></AddProjForm>
+            <AddProjForm user={props.user}></AddProjForm>
             
         </div>
     )

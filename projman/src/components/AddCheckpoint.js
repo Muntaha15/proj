@@ -22,7 +22,7 @@ export default function AddCheckpoint(props) {
     }
 
     function sendToBackend(obj){
-        Send(obj , "checkpoint");
+        Send(obj , "checkpoint"  , "none");
         console.log(obj);
         console.log("adding new member to" + props.project);
     }

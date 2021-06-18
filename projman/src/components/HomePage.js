@@ -12,6 +12,9 @@ export default function HomePage(props) {
 
   const [projList , setProjList] = React.useState([])
 
+  
+
+
   /*"http://localhost:9000/projects"*/ 
   React.useEffect(()=>{
     console.log("before thr fetch statement");
@@ -20,7 +23,10 @@ export default function HomePage(props) {
     .then(data => {
       console.log(data);
       setProjList(data);
+
+    
       
+    
     })
   } , [])
 
@@ -32,6 +38,7 @@ export default function HomePage(props) {
   }
   
   function checkEmail(str){
+    
     let ind = -1;
     for(var i =0; i<str.length ; i++){
       if(str.charAt(i)=="@"){
@@ -60,6 +67,7 @@ export default function HomePage(props) {
 
   if(props.profile.email){
     let email = props.profile.email;
+    
     let validation = checkEmail(email);
     if(validation){
       console.log(email + " is allowed in the field")
@@ -108,9 +116,11 @@ export default function HomePage(props) {
 
         <Container style={{paddingTop : "100px"}}>
         {/* <Projlist data = {props.data}></Projlist> */}
+        <Projlist data = {projList} token={props.token} profile={props.profile} user={props.profile.email}></Projlist>
+        {console.log("this this this")}
 
-        <Projlist data = {projList} token={props.token} profile={props.profile}></Projlist>
-        {console.log(projList)}
+        {console.log(props.profile.email)}
+       
       </Container>
       <Wave fill='#6699ff'
         paused={false}

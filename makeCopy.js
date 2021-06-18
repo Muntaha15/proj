@@ -82,7 +82,53 @@ async function deleteFile(id){
     }
 }
 
-module.exports = { makeCopy , deleteFile}
+// const perm_user = "rishi.dubey2705@gmail.com"
+// const perm_file = "17ByGSzIwWHgxltnaxHsIC57uC6NMttaeLk1Jfyso4Ag"
+
+async function grantPermission(user , file){
+
+    let userId = ""
+
+    // try{
+
+    //     const res = await drive.permissions.getIdFromEmail({
+    //         email : user
+    //     })
+
+    //     userId = res.id;
+
+
+    // }catch(err){
+
+    //     console.log("couldn't fetch the permissions id");
+    //     console.log(err)
+    // }
+
+    try{
+        console.log(drive.permissions.create)
+        const res = await  drive.permissions.create({
+            fileId : file,
+            resource :{
+                role : "writer",
+                type : "user",
+                value : user,
+                emailAddress: user,
+                
+            },
+            
+        })
+
+        console.log("SUCCESS!!")
+        
+    }catch(err){
+        console.log("couldn't set the permissions for " + user);
+        console.log(err)
+    }
+
+}
+
+// grantPermission(perm_user , perm_file)
+module.exports = { makeCopy , deleteFile , grantPermission}
 
 
 //https://docs.google.com/spreadsheets/d/16W9jfH2j1ZaInfNcYlk85zn30jrtG_JGz3SBvmOc0nc/edit?usp=sharing
