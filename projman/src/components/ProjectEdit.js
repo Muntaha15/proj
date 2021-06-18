@@ -88,6 +88,7 @@ function ProjectEdit(props){
         }
 
         DeleteSend(obj , "project")
+        window.location.reload()
         
     }
 
