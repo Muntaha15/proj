@@ -4,7 +4,7 @@ const CLIENT_ID = "64080679766-lqssbjjjgi5001n8p6fdvfo98hh421hr.apps.googleuserc
 const CLIENT_SECRET = "D8RvdBWASaIuqGiUQUR929HX";
 const REDIRECT_URI = "https://developer.google.com/oauthplayground";
 
-const REFRESH_TOKEN = "1//04whOaKBU30qfCgYIARAAGAQSNwF-L9IrSdUO9edKEq3V1H65y5qTHfAk72t5cUqd0DQi0MyOzyy49sDeGlwpJRg4NtTkpyPRKxQ"
+const REFRESH_TOKEN = "1//043RuU9nUPaX9CgYIARAAGAQSNwF-L9IrG9eoVzlfpNu7K2U-HlXtUFENDELkpmiYqdIHj_3nx0TWXrK3PhkvY6BKIZNeTm6ulLk"
 const oauth2Client = new google.auth.OAuth2(
     CLIENT_ID,
     CLIENT_SECRET,
@@ -12,19 +12,6 @@ const oauth2Client = new google.auth.OAuth2(
 )
 const AUTH_CODE  = "4/0AY0e-g61vVoIMND6S7TPRADQAposd12XLnQKSbBdHA-wP-3ISj0SDo1-N_aoewgMjMflBg";
 const code = "4%2F0AY0e-g4GxKqiq3rOCUynrv38_FVjJvR5qgAWGTkYcRKlzg-yWdAg3w03m5yjiEYE0fMJVg&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=64080679766-lqssbjjjgi5001n8p6fdvfo98hh421hr.apps.googleusercontent.com&client_secret=D8RvdBWASaIuqGiUQUR929HX&scope=&grant_type=authorization_code"
-async function getToken(){
-    try{
-        const {tokens} = await oauth2Client.getToken(code)
-        oauth2Client.setCredentials(tokens);
-    }catch(err){
-        console.log(err);
-    }
-
-    setTimeout(getToken , 3400*1000)
-}
-
-
-
 const fileID = "1BS9tM4I3IOEWYvhn0ZqynsC98oxy2KXixy2SLIrP3Ag";
 
 oauth2Client.setCredentials({refresh_token : REFRESH_TOKEN});

@@ -1,8 +1,8 @@
 
 import { checkPropTypes } from "prop-types"
 import React from "react"
-import {Button ,Modal  , Form  , Dropdown , ButtonGroup} from "react-bootstrap"
-import {Link} from "react-router-dom"
+import {Button ,Modal  , Form  , Dropdown , ButtonGroup , SplitButton} from "react-bootstrap"
+import {Link , useHistory} from "react-router-dom"
 import DeleteSend from "./DeleteSend.js"
 import EditSend from "./EditSend.js"
 
@@ -57,11 +57,11 @@ const EditModal = ( props)=>{
                         </Form.Group>
                         <Form.Group  controlId="formGridPassword" style={{display : false}}>
                             <Form.Label>Org</Form.Label>
-                            <Form.Control type="text" placeholder="Name"  onChange={(e)=>{setOrg(e.target.value)}} />
+                            <Form.Control type="text" placeholder="Org Name"  onChange={(e)=>{setOrg(e.target.value)}} />
                         </Form.Group>
                         <Form.Group  controlId="formGridPassword" style={{display : false}}>
                             <Form.Label>Duration</Form.Label>
-                            <Form.Control type="text" placeholder="Name"  onChange={(e)=>{setDuration(e.target.value)}} />
+                            <Form.Control type="text" placeholder="Expected Duration"  onChange={(e)=>{setDuration(e.target.value)}} />
                         </Form.Group>
                         
                         
@@ -92,24 +92,29 @@ function ProjectEdit(props){
         
     }
 
+    
+
 
     const DDButton = (props)=>{ 
-        
+        const history = useHistory()
         return(
             <>
-            <Dropdown as={ButtonGroup}>
+            <SplitButton drop="up"id={`dropdown-button-drop-up`} title = "veiw" onClick={()=>{history.push(props.link)}}>
+                <Dropdown.Item  onClick={()=>{console.log("sure?");setShowEdit(true)}}  style={{ textAlign : "center" ,  backgroundColor : "white"}}><b>Edit</b></Dropdown.Item>
+                <Dropdown.Item  onClick={()=>{console.log("sure?");setShow(true)}}  style={{color :"red" , backgroundColor : "lightPink" , textAlign : "center"}}><b>Delete</b></Dropdown.Item>
+            </SplitButton>
+            {/* <Dropdown as={ButtonGroup}>
             <Link to= {props.link}><Button variant="success"> Veiw</Button></Link>
 
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
-
-            <Dropdown.Menu >
-            <Dropdown.Item  onClick={()=>{console.log("sure?");setShowEdit(true)}}  style={{ textAlign : "center" ,  backgroundColor : "white"}}><b>Edit</b></Dropdown.Item>
+            
+            <Dropdown.Menu drop="up">
+            <Dropdown.Item  onClick={()=>{console.log("sure?");setShowEdit(true)}}  style={{ textAlign : "center" ,  backgroundColor : "black"}}><b>Edit</b></Dropdown.Item>
             <Dropdown.Item  onClick={()=>{console.log("sure?");setShow(true)}}  style={{color :"red" , backgroundColor : "lightPink" , textAlign : "center"}}><b>Delete</b></Dropdown.Item>
             
-                {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
+              
             </Dropdown.Menu>
-            
+            </Dropdown> */}
                 {/* <DeletionWarning onConfirm={DeleteMember} show={show} onHide={()=>{setShow(false)}} /> */}
                 <Modal show={show} onHide={()=>{setShow(false)}} >
                 <Modal.Header closeButton>
@@ -138,7 +143,7 @@ function ProjectEdit(props){
                 _id = {props._id}
                 />
 
-            </Dropdown>
+            
 
             </>
         )

@@ -41,6 +41,8 @@ export default function Projlist(props) {
                  {/* </tbody> 
             </Table> */}
             <ListCard name = {"none"} org={"none"} status={"none"} _id={"none"}></ListCard>
+            {/* <div data-aos="fade-left" data-aos-duration={`${(10-2)*100}`}><ListCard name = {"test"} org={"test"}  duration={"30s"} _id = {"18981989181"}  token={null} profile={null}  /></div>
+            <div data-aos="fade-left" data-aos-duration={`${(10-2)*100}`}><ListCard name = {"test"} org={"test"}  duration={"30s"} _id = {"18981989181"}  token={null} profile={null}  /></div> */}
             {
                       
                       props.data.map((proj , key)=>{
@@ -48,6 +50,7 @@ export default function Projlist(props) {
                           return <div data-aos="fade-left" data-aos-duration={`${(10-key)*100}`}><ListCard name = {proj.name} org={proj.org}  duration={proj.duration} _id = {proj._id}  token={props.token} profile={props.profile}  /></div>
                       })
                     }
+
             <AddProjForm user={props.user}></AddProjForm>
             
         </div>
