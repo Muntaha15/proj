@@ -40,7 +40,7 @@ function LoginPage(props){
                     <h1 style={{
                         color:"white",
                         textAlign : "center"
-                    }} >Welcome , Please login to veiw the projects!</h1>
+                    }} >Welcome , Please login to view the projects!</h1>
                 </div>
                 <div style={{
                     
